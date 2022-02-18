@@ -10,7 +10,7 @@ var PackBox *packr.Box
 
 // 将./pocs目录下的poc加载到PackBox
 func LoadPackPoc() error {
-	PackBox =packr.New("poc","./pocs")
+	PackBox =packr.New("poc","../pocs")
 	return nil
 }
 

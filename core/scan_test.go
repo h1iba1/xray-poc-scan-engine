@@ -18,8 +18,8 @@ func init() {
 func TestDoScan(t *testing.T) {
 
 	req := &PocRequest{
-		URL: "https://www.h11ba1.com",
-		YmlName: "poc-yaml-yapi-rce",
+		URL: "http://47.100.49.38:8081",
+		YmlName: "poc-yaml-nexus-cve-2019-7238",
 		Headers: http.Header{},
 		Method: "get",
 		PostData:"",
@@ -52,8 +52,6 @@ func TestDoScan(t *testing.T) {
 	//}
 
 	fmt.Println(pocResult.Vulnerable)
-
-
 }
 
 func TestCelParseYamlSets(t *testing.T) {

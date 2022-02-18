@@ -289,7 +289,6 @@ func (p *PocExecuteManager) DoScan(req *PocRequest)(*PocResult,error)  {
 
 	// 处理expression
 	expResult = expressionSlice(pocYaml.Expression)
-//Exit:
 	for i,exp:=range expResult.ExpResultSlice {
 
 		var (
@@ -335,6 +334,13 @@ func (p *PocExecuteManager) DoScan(req *PocRequest)(*PocResult,error)  {
 			request.Header.Set("User-Agent", p.userAgents[0])
 		}
 
+		if rule.Request.Headers !=nil{
+			for k,v := range rule.Request.Headers{
+				request.Header.Set(k,v)
+			}
+		}
+
+
 	//	PocVerify
 		var verify PocVerify
 		verify.Payload=body
@@ -356,6 +362,7 @@ func (p *PocExecuteManager) DoScan(req *PocRequest)(*PocResult,error)  {
 
 	//	开始进行请求
 		response, socketBody, err :=p.protocolSend(*pocYaml,client,request,host,body,req.Port)
+
 		if err!=nil{
 			Log.Errorf("protocol send error %v",err)
 			return nil,err
